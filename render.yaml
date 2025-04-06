@@ -1,0 +1,36 @@
+services:
+  # Frontend service - React app
+  - type: web
+    name: lorcana-frontend
+    env: static
+    buildCommand: cd lorcana && npm ci && npm run build
+    staticPublishPath: ./lorcana/dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          name: lorcana-backend
+          type: web
+          property: host
+        sync: false
+
+  # Backend service - Flask API
+  - type: web
+    name: lorcana-backend
+    env: docker
+    dockerfilePath: ./lorcana/Dockerfile.backend
+    dockerContext: ./lorcana
+    envVars:
+      - key: MONGODB_URI
+        fromDatabase:
+          name: lorcana-db
+          property: connectionString
+
+# Database - MongoDB
+databases:
+  - name: lorcana-db
+    type: mongodb
+    plan: free
