@@ -6,8 +6,8 @@
  * and other backend resources.
  */
 
-// API base URL - can be changed based on environment
-const API_BASE_URL = 'http://localhost:5000/api';
+// Get API base URL from environment variables or use default for local development
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 /**
  * Handles API responses and provides consistent error handling
