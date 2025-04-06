@@ -15,7 +15,6 @@ services:
           name: lorcana-backend
           type: web
           property: host
-        sync: false
 
   # Backend service - Flask API
   - type: web
