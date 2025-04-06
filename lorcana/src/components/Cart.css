@@ -1,0 +1,40 @@
+.cart-item-image {
+  max-height: 80px;
+  object-fit: contain;
+}
+
+.cart-summary {
+  position: sticky;
+  top: 20px;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quantity-control button {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.quantity-control span {
+  min-width: 30px;
+  text-align: center;
+}
+
+.premium-packaging-switch {
+  cursor: pointer;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .cart-item-controls {
+    margin-top: 1rem;
+  }
+}

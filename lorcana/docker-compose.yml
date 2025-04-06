@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  # Frontend service - React application
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - lorcana-network
+
+  # Backend service - Flask API
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    environment:
+      - MONGODB_URI=mongodb://mongodb:27017/
+      - FLASK_ENV=production
+    depends_on:
+      - mongodb
+    networks:
+      - lorcana-network
+    # No need to expose port 5000 to the host - only the frontend needs it
+
+  # Database service - MongoDB
+  mongodb:
+    image: mongo:6
+    restart: always
+    volumes:
+      - mongodb_data:/data/db
+      - ./mongo-init:/docker-entrypoint-initdb.d
+    networks:
+      - lorcana-network
+    environment:
+      # For development; use more secure settings in production
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=adminpassword
+      - MONGO_INITDB_DATABASE=lorcana
+
+networks:
+  lorcana-network:
+    driver: bridge
+
+volumes:
+  mongodb_data:
