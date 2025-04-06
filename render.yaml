@@ -32,5 +32,6 @@ services:
 # Database - MongoDB
 databases:
   - name: lorcana-db
-    type: mongodb
+    databaseName: lorcana
+    ipAllowList: []  # Only allow connections from Render services
     plan: free
