@@ -25,16 +25,16 @@ app = Flask(__name__)
 CORS(app, origins=["http://localhost:5173", "http://127.0.0.1:5173", "https://lorcana-frontend.onrender.com"])
 
 # Get MongoDB connection details from environment variables with fallbacks
-mongo_uri = os.getenv('MONGODB_URI', 'mongodb://localhost:27017/')
-mongo_user = os.getenv('MONGODB_USER', '')
-mongo_pass = os.getenv('MONGODB_PASSWORD', '')
+mongo_uri = os.getenv('mongodb+srv://hello:Archer126126!@lorcanacardstore.p4ezkqn.mongodb.net/?retryWrites=true&w=majority&appName=LorcanaCardStore', 'mongodb://localhost:27017/')
+mongo_user = os.getenv('MONGODB_USER', 'hello')
+mongo_pass = os.getenv('MONGODB_PASSWORD', 'Archer126126!')
 port = int(os.environ.get('PORT', 8000))
 
 # Determine if we need to use authentication
 if mongo_user and mongo_pass:
     mongo_client = MongoClient(mongo_uri, 
-                            username=mongo_user,
-                            password=mongo_pass)
+                            username=hello,
+                            password=Archer126126!)
     print("Connecting to MongoDB with authentication")
 else:
     mongo_client = MongoClient(mongo_uri)
