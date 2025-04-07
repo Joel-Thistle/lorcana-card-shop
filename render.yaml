@@ -22,6 +22,4 @@ services:
     env: python
     buildCommand: cd lorcana/backend && pip install -r requirements.txt
     startCommand: cd lorcana/backend && gunicorn --bind 0.0.0.0:$PORT lorcana_api:app
-    envVars:
-      - key: MONGODB_URI
-        value: mongodb+srv://replace-with-actual-mongodb-atlas-uri
+   #
