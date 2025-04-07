@@ -22,15 +22,5 @@ services:
     env: docker
     dockerfilePath: ./lorcana/Dockerfile.backend
     dockerContext: ./lorcana
-    envVars:
-      - key: MONGODB_URI
-        fromDatabase:
-          name: lorcana-db
-          property: connectionString
-
-# Database - MongoDB
-databases:
-  - name: lorcana-db
-    databaseName: lorcana
-    ipAllowList: []  # Only allow connections from Render services
-    plan: free
+    # You'll need to manually set the MONGODB_URI environment variable
+    # in the Render dashboard after creating your MongoDB Atlas database
