@@ -1,7 +1,8 @@
 services:
   # Frontend service - React app
-  - type: static
+  - type: web
     name: lorcana-frontend
+    env: static
     buildCommand: cd lorcana && npm ci && npm run build
     staticPublishPath: ./lorcana/dist
     routes:
@@ -18,7 +19,7 @@ services:
   # Backend service - Flask API (without Docker)
   - type: web
     name: lorcana-backend
-    runtime: python
+    env: python
     buildCommand: cd lorcana/backend && pip install -r requirements.txt
     startCommand: cd lorcana/backend && gunicorn --bind 0.0.0.0:$PORT lorcana_api:app
     envVars:
