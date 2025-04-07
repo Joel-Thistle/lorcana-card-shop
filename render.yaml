@@ -14,7 +14,7 @@ services:
         fromService:
           name: lorcana-backend
           type: web
-          property: url
+          property: host
 
   # Backend service - Flask API (without Docker)
   - type: web
