@@ -4,5 +4,9 @@
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "react-router-dom": "^7.4.0"
+  },
+  "devDependencies": {
+    "vite": "^4.0.0",
+    "@vitejs/plugin-react-swc": "^3.0.0"
   }
 }
