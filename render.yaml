@@ -1,8 +1,7 @@
 services:
   # Frontend service - React app
-  - type: web
+  - type: static
     name: lorcana-frontend
-    env: static
     buildCommand: cd lorcana && npm ci && npm run build
     staticPublishPath: ./lorcana/dist
     routes:
@@ -14,13 +13,14 @@ services:
         fromService:
           name: lorcana-backend
           type: web
-          property: host
+          property: url
 
-  # Backend service - Flask API
+  # Backend service - Flask API (without Docker)
   - type: web
     name: lorcana-backend
-    env: docker
-    dockerfilePath: ./lorcana/Dockerfile.backend
-    dockerContext: ./lorcana
-    # You'll need to manually set the MONGODB_URI environment variable
-    # in the Render dashboard after creating your MongoDB Atlas database
+    runtime: python
+    buildCommand: cd lorcana/backend && pip install -r requirements.txt
+    startCommand: cd lorcana/backend && gunicorn --bind 0.0.0.0:$PORT lorcana_api:app
+    envVars:
+      - key: MONGODB_URI
+        value: mongodb+srv://replace-with-actual-mongodb-atlas-uri
